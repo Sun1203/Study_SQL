@@ -1,0 +1,217 @@
+<html>
+<header>
+<title>초보자도 할 수 있는 SQL - 이재선, 정주영B, 윤정화</title>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<style>
+body {font-family: 'Nanum Gothic', sans-serif;}
+h1 {margin : 1rem;}
+details {padding : 1rem; white-space: pre-wrap;}
+.question {margin : 2rem; padding : 1rem; border: 1px solid gray;}
+</style>
+</header>
+
+<body>
+
+<h1><div>[초보자도 할 수 있는 SQL - 이재선, 정주영B, 윤정화]</div></h1>
+
+<div class='question' id='Q1'>
+
+      <h4>1. jobs table의 job_id 첫번째 글자가 A로 시작하고(substr 사용) max_salary가  10000이상인 사람의 모든정보를  검색하라</h4>
+      
+      <details>
+            <summary>모범 답안</summary>
+            <strong>select</strong> *
+            <strong>from</strong> jobs
+            <strong>where</strong> substr(job_id, 1, 1) = 'A' <strong>and</strong> max_salary >= 10000;
+
+            JOB_ID               JOB_TITLE                                                              MIN_SALARY MAX_SALARY
+            -------------------- ---------------------------------------------------------------------- ---------- ----------
+            AD_PRES             President                                                                  20080      40000
+            AD_VP                Administration Vice President                                  15000      30000
+            AC_MGR              Accounting Manager                                              8200       16000
+      </details>
+</div>
+
+
+<div class=question id=Q2>
+
+      <h4>2. employees table의 연봉(salary) 인상계산
+             80번 부서의 사람들만 연봉(salary)이 2배 인상되었다. 2배 인상된 80번 부서의 사람들의 job_id, salary를 검색해라</h4>
+
+      <details>
+            <summary>모범 답안</summary>
+            <strong>select</strong> job_id, salary, decode(department_id, 80, SALARY * 2)
+            <strong>from</strong> employees
+            <strong>where</strong> department_id = 80;
+            
+            JOB_ID                   SALARY DECODE(DEPARTMENT_ID,80,SALARY*2)
+            -------------------- ---------- ---------------------------------
+            SA_MAN                    14000                             28000
+            SA_MAN                    13500                             27000
+            SA_MAN                    12000                             24000
+            SA_MAN                    11000                             22000
+            SA_MAN                    10500                             21000
+            SA_REP                    10000                             20000
+            SA_REP                     9500                             19000
+            SA_REP                     9000                             18000
+            SA_REP                     8000                             16000
+            SA_REP                     7500                             15000
+            SA_REP                     7000                             14000
+            SA_REP                    10000                             20000
+            SA_REP                     9500                             19000
+            SA_REP                     9000                             18000
+            SA_REP                     8000                             16000
+            SA_REP                     7500                             15000
+            SA_REP                     7000                             14000
+            SA_REP                    10500                             21000
+            SA_REP                     9500                             19000
+            SA_REP                     7200                             14400
+            SA_REP                     6800                             13600
+            SA_REP                     6400                             12800
+            SA_REP                     6200                             12400
+            SA_REP                    11500                             23000
+            SA_REP                    10000                             20000
+            SA_REP                     9600                             19200
+            SA_REP                     7400                             14800
+            SA_REP                     7300                             14600
+            SA_REP                     6100                             12200
+            SA_REP                    11000                             22000
+            SA_REP                     8800                             17600
+            SA_REP                     8600                             17200
+            SA_REP                     8400                             16800
+            SA_REP                     6200                             12400
+      </details>
+</div>
+
+
+
+<div class=question id=Q3>
+
+      <h4>3. [table = employees] 창사 10주년 기념으로 02년도입사자와 07년도 입사자에게 휴가를 주려한다. first_name과 job_id를 출력하라</h4>
+
+      <details>
+            <summary>모범 답안</summary>
+            <strong> select</strong> job_id,first_name
+            <strong> from</strong> employees
+            <strong> where</strong> hire_date like '02%' or hire_date like '07%';
+
+
+            JOB_ID               FIRST_NAME
+            -------------------- ----------------------------------------
+            IT_PROG              Bruce
+            IT_PROG              Diana
+            FI_MGR               Nancy
+            FI_ACCOUNT           Daniel
+            FI_ACCOUNT           Luis
+            PU_MAN               Den
+            PU_CLERK             Karen
+            ST_MAN               Kevin
+            ST_CLERK             James
+            ST_CLERK             TJ
+            ST_CLERK             Ki
+            SA_MAN               Gerald
+            SA_REP               Oliver
+            SA_REP               Danielle
+            SA_REP               William
+            SA_REP               Elizabeth
+            SA_REP               Kimberely
+            SH_CLERK             Martha
+            SH_CLERK             Anthony
+            SH_CLERK             Randall
+            SH_CLERK             Vance
+            SH_CLERK             Donald
+            HR_REP               Susan
+            PR_REP               Hermann
+            AC_MGR               Shelley
+            AC_ACCOUNT           William
+            26 rows selected.
+            
+
+      </details>
+</div>
+
+
+<div class=question id=Q4>
+      <h4>4.</h4>
+      <details>
+            <summary>모범 답안</summary>
+            <strong>select</strong> salary, department_ID
+            <strong>from</strong> employees
+            <strong>where</strong> mod(manager_id, 9) = 1
+            <strong>order by</strong> salary <strong>desc</strong>;
+
+
+      </details>
+</div>
+
+
+<div class=question id=Q5>
+      <h4>5. [table = employees] 급여가(SALARY)가 6000 이상 10000 미만인 사람의 이름(first_name)과 직함(JOB_ID)을 출력하시오</h4>
+      <details>
+            <summary>모범 답안</summary>
+            <strong>select</strong> FIRST_NAME, JOB_ID
+            <strong>from</strong> employees
+            <strong>where</strong> SALARY between 6000 and 9999;
+
+            
+            FIRST_NAME                               JOB_ID
+            ---------------------------------------- --------------------
+            Alexander                                IT_PROG
+            Bruce                                    IT_PROG
+            Daniel                                   FI_ACCOUNT
+            John                                     FI_ACCOUNT
+            Ismael                                   FI_ACCOUNT
+            Jose Manuel                              FI_ACCOUNT
+            Luis                                     FI_ACCOUNT
+            Matthew                                  ST_MAN
+            Adam                                     ST_MAN
+            Payam                                    ST_MAN
+            Shanta                                   ST_MAN
+            David                                    SA_REP
+            Peter                                    SA_REP
+            Christopher                              SA_REP
+            Nanette                                  SA_REP
+            Oliver                                   SA_REP
+            Patrick                                  SA_REP
+            Allan                                    SA_REP
+            Lindsey                                  SA_REP
+            Louise                                   SA_REP
+            Sarath                                   SA_REP
+            Danielle                                 SA_REP
+            Mattea                                   SA_REP
+            David                                    SA_REP
+            Sundar                                   SA_REP
+            Amit                                     SA_REP
+            Tayler                                   SA_REP
+            William                                  SA_REP
+            Elizabeth                                SA_REP
+            Sundita                                  SA_REP
+            Alyssa                                   SA_REP
+            Jonathon                                 SA_REP
+            Jack                                     SA_REP
+            Kimberely                                SA_REP
+            Charles                                  SA_REP
+            Pat                                      MK_REP
+            Susan                                    HR_REP
+            William                                  AC_ACCOUNT
+
+
+      </details>
+</div>
+
+
+<div class=question id=Q6>
+      <h4>6.</h4>
+      <details>
+            <summary>모범 답안</summary>
+            <strong>select</strong>
+
+
+
+      </details>
+</div>
+
+
+
+</body>
+</html>
