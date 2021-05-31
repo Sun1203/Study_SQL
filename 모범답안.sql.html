@@ -146,71 +146,23 @@ details {padding : 1rem; white-space: pre-wrap;}
 
 
 <div class=question id=Q5>
-      <h4>5. [table = employees] 급여가(SALARY)가 6000 이상 10000 미만인 사람의 이름(first_name)과 직함(JOB_ID)을 출력하시오</h4>
+      <h4>5. [table = employees] 20년 이상 장기 근속자에게 급여의 100%를 상여금으로 지급하려고 한다.
+             장기 근속자의 이름(FIRST_NAME), 근속연수, 상여금을 포함한 급여(SALARY)를 출력하라</h4>
       <details>
             <summary>모범 답안</summary>
-            <strong>select</strong> FIRST_NAME, JOB_ID
+            <strong>select</strong> select LAST_NAME 이름, trunc(((sysdate - HIRE_DATE)+1)/365) 근속연수, 2*SALARY "급여(상여금포함)"
             <strong>from</strong> employees
-            <strong>where</strong> SALARY between 6000 and 9999;
+            <strong>where</strong> trunc(((sysdate - HIRE_DATE)+1)/365) >= 20;
 
             
-            FIRST_NAME                               JOB_ID
-            ---------------------------------------- --------------------
-            Alexander                                IT_PROG
-            Bruce                                    IT_PROG
-            Daniel                                   FI_ACCOUNT
-            John                                     FI_ACCOUNT
-            Ismael                                   FI_ACCOUNT
-            Jose Manuel                              FI_ACCOUNT
-            Luis                                     FI_ACCOUNT
-            Matthew                                  ST_MAN
-            Adam                                     ST_MAN
-            Payam                                    ST_MAN
-            Shanta                                   ST_MAN
-            David                                    SA_REP
-            Peter                                    SA_REP
-            Christopher                              SA_REP
-            Nanette                                  SA_REP
-            Oliver                                   SA_REP
-            Patrick                                  SA_REP
-            Allan                                    SA_REP
-            Lindsey                                  SA_REP
-            Louise                                   SA_REP
-            Sarath                                   SA_REP
-            Danielle                                 SA_REP
-            Mattea                                   SA_REP
-            David                                    SA_REP
-            Sundar                                   SA_REP
-            Amit                                     SA_REP
-            Tayler                                   SA_REP
-            William                                  SA_REP
-            Elizabeth                                SA_REP
-            Sundita                                  SA_REP
-            Alyssa                                   SA_REP
-            Jonathon                                 SA_REP
-            Jack                                     SA_REP
-            Kimberely                                SA_REP
-            Charles                                  SA_REP
-            Pat                                      MK_REP
-            Susan                                    HR_REP
-            William                                  AC_ACCOUNT
+            이름               급여(상여금포함)    근속연수
+            ------------------ ------------------ ------------------
+            De Haan            34000              20
+           
 
 
       </details>
 </div>
-
-
-<div class=question id=Q6>
-      <h4>6.</h4>
-      <details>
-            <summary>모범 답안</summary>
-            <strong>select</strong>
-
-
-
-      </details>
-</div>
-
 
 .
 </body>
