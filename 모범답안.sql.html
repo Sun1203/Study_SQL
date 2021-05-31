@@ -150,7 +150,7 @@ details {padding : 1rem; white-space: pre-wrap;}
              장기 근속자의 이름(FIRST_NAME), 근속연수, 상여금을 포함한 급여(SALARY)를 출력하라</h4>
       <details>
             <summary>모범 답안</summary>
-            <strong>select</strong> select LAST_NAME 이름, trunc(((sysdate - HIRE_DATE)+1)/365) 근속연수, 2*SALARY "급여(상여금포함)"
+            <strong>select</strong> LAST_NAME 이름, trunc(((sysdate - HIRE_DATE)+1)/365) 근속연수, 2*SALARY "급여(상여금포함)"
             <strong>from</strong> employees
             <strong>where</strong> trunc(((sysdate - HIRE_DATE)+1)/365) >= 20;
 
