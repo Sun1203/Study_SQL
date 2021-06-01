@@ -164,6 +164,45 @@ details {padding : 1rem; white-space: pre-wrap;}
       </details>
 </div>
 
+<div class=question id=Q6>
+
+      <h4>6.최저시급이올라서 저연봉자들의 연봉들을 올려주려고한다.<br>
+            현재 연봉이 2500미만은 3000으로 올려주고<br>
+            현재 연봉 2500이상 3334미만은 연봉을 20퍼 올려주고<br>
+            현재 연봉 3333 이상 3818 미만은 연봉을 4100으로<br>
+            현재 연봉의 3818이상은 연봉을 10퍼 올려주려고한다.<br>
+            기존연봉을 기준으로 오름차순으로 정렬하고<br>
+            first_name과 email,인상된연봉을 보여주세요.<br>
+            <details><summary>hint</summary>case when문을 사용하세요.</details></h4>
+      <details>
+            <summary>모범 답안</summary>
+            <strong>select</strong> first_name,email,salary,
+            <strong>case when</strong> (salary < 2500) then 3000
+            <strong>when</strong> (salary >= 2500) and (salary < 3334) then (salary*1.2)
+            <strong>when</strong> (salary >= 3333) and (salary < 3818) then 4100
+            <strong>else</strong> (salary*1.1) end as 인상된연봉
+            <strong>from</strong> employees
+            <strong>order by</strong> salary asc;
+
+            FIRST_NAME             EMAIL            이전연봉    인상된연봉
+            ----------------------------------------------------- ---------- 
+            TJ                         TJOLSON                2100       3000
+            Steven                 SMARKLE               2200       3000
+            Hazel                   HPHILTAN               2200       3000
+            James                  JLANDRY                2400       3000
+            . 
+            .
+            .
+            Neena                NKOCHHAR            17000      18700
+            Steven               SKING                      24000      26400
+
+      </details>
+
+           
+
+</div>
+
+
 .
 </body>
 </html>
